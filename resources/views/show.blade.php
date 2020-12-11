@@ -100,126 +100,36 @@
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Similar Games</h2>
             <div
                 class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/ff7.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
-                        </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
+                 @foreach($game['similar_games'] as $similar_game)
+                    <div class="game mt-8">
+                        <div class="relative inline-block">
+                            @if(array_key_exists('cover', $similar_game))
+                                <a href="#">
+                                    <img src="{{ Str::replaceFirst('thumb', 'cover_big', $similar_game['cover']['url']) }}" alt="game cover"
+                                         class="hover:opacity-75 transition ease-in-out duration-150"/>
+                                </a>
+                            @endif
+                            <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
+                                 style="right: -20px; bottom: -20px">
+                                <div class="font-semibold text-xs flex justify-center items-center h-full">
+                                    @if(array_key_exists('rating', $similar_game))
+                                        {{ round($similar_game['rating']).'%' }}
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Final Fantasy 7 Remake
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        Playstation 4
-                    </div>
-                </div>
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/animalcrossing.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
+                        <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
+                            {{ $similar_game['name'] }}
                         </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
-                            </div>
+                        <div class="text-gray-400 mt-1">
+                            @foreach($game['platforms'] as $platform)
+                                @if( array_key_exists('abbreviation', $platform))
+                                    {{ $platform['abbreviation']  }},
+                                @endif
+                            @endforeach
                         </div>
                     </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Animal Crossing: New Horizon
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        Nintendo Switch
-                    </div>
-                </div>
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/doom.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
-                        </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Doom Eternal
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        Playstation 4, PC
-                    </div>
-                </div>
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/alyx.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
-                        </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Half Life: Alyx
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        PC
-                    </div>
-                </div>
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/luigi.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
-                        </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Luigi's Mansion 3
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        Nintendo Switch
-                    </div>
-                </div>
-                <div class="game mt-8">
-                    <div class="relative inline-block">
-                        <a href="#">
-                            <img src="/resident.jpg" alt="game cover"
-                                 class="hover:opacity-75 transition ease-in-out duration-150"/>
-                        </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                             style="right: -20px; bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                80%
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                        Resident Evil 3
-                    </a>
-                    <div class="text-gray-400 mt-1">
-                        PC, Playstation 4, XBox One X
-                    </div>
-                </div>
+                @endforeach
             </div> <!-- end popular games -->
         </div> <!-- end similar-games-container -->
     </div>
