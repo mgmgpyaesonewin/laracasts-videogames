@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class PopularGames extends Component
 {
-    public $popularGames = [];
+    public array $popularGames = [];
 
     public function loadPopularGames()
     {
@@ -39,7 +39,7 @@ class PopularGames extends Component
         return view('livewire.popular-games');
     }
 
-    private function formatForView($games): Collection
+    private function formatForView($games): array
     {
         return collect($games)->map(function ($game) {
             return collect($game)->merge([
@@ -47,6 +47,6 @@ class PopularGames extends Component
                 'rating' => round($game['rating']).'%',
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', ')
             ]);
-        });
+        })->toArray();
     }
 }
