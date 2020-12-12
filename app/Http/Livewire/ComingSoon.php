@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ComingSoon extends Component
 {
-    public $comingSoon = [];
+    public array $comingSoon = [];
 
     public function loadComingSoon()
     {
